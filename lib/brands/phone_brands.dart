@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 
-class LaptopBrandsView extends StatelessWidget {
-  const LaptopBrandsView({super.key});
+class PhoneBrandsView extends StatelessWidget {
+  const PhoneBrandsView({super.key});
 
   static final List<Map<String, dynamic>> _brands = [
-    {'name': 'Lenovo', 'icon': Icons.laptop},
-    {'name': 'HP', 'icon': Icons.laptop},
-    {'name': 'Apple', 'icon': Icons.laptop_mac},
-    {'name': 'Asus', 'icon': Icons.laptop},
-    {'name': 'Dell', 'icon': Icons.laptop},
-    {'name': 'Acer', 'icon': Icons.laptop},
-    {'name': 'Fujitsu', 'icon': Icons.laptop},
-    {'name': 'Razer', 'icon': Icons.laptop},
-    {'name': 'Others', 'icon': Icons.laptop},
+    {'name': 'Samsung', 'icon': Icons.phone_android},
+    {'name': 'Apple', 'icon': Icons.phone_iphone},
+    {'name': 'Oppo', 'icon': Icons.phone_android},
+    {'name': 'Vivo', 'icon': Icons.phone_android},
+    {'name': 'Realme', 'icon': Icons.phone_android},
+    {'name': 'Xiaomi', 'icon': Icons.phone_android_sharp},
+    {'name': 'Vivo', 'icon': Icons.phone_android},
+    {'name': 'OnePlus', 'icon': Icons.phone_android},
+    {'name': 'Others', 'icon': Icons.phone_android_sharp},
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Choose Laptop Brand'),
+        title: const Text('Cdeviceclinic'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -27,10 +27,10 @@ class LaptopBrandsView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Text(
-              'What is your laptop brand?',
+              'What is your phone brand?',
               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),
             ),
-            const SizedBox(height: 16.0), // 24.0
+            const SizedBox(height: 16.0),
             Expanded(
               child:GridView.count(
                 crossAxisCount: 3,
@@ -79,7 +79,3 @@ class LaptopBrandsView extends StatelessWidget {
     );
   }
 }
-
-// Note: This file uses Material icons as placeholders for brand logos.
-// To use real logos, add image assets to `assets/` and replace the
-// CircleAvatar child with `Image.asset(...)`.

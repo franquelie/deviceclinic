@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'laptop_brand.dart';
+import 'brands/laptop_brands.dart';
+import 'brands/phone_brands.dart';
+import 'brands/tablet_brands.dart';
 
 void main() {
   runApp(const MyApp());
@@ -176,11 +178,15 @@ class DeviceTypeView extends StatelessWidget {
                 const SizedBox(width: 12.0),
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Selected: Phone')),
+                    onPressed: () async {
+                      final result = await Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const PhoneBrandsView()),
                       );
-                      Navigator.of(context).pop();
+                      if (result != null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Selected: $result')),
+                        );
+                      }
                     },
                     child: const Text('Phone'),
                   ),

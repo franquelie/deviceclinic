@@ -194,11 +194,15 @@ class DeviceTypeView extends StatelessWidget {
                 const SizedBox(width: 12.0),
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Selected: Tablet')),
+                    onPressed: () async {
+                      final result = await Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const PhoneBrandsView()),
                       );
-                      Navigator.of(context).pop();
+                      if (result != null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Selected: $result')),
+                        );
+                      }
                     },
                     child: const Text('Tablet'),
                   ),

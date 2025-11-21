@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../problems.dart';
 
 class PhoneBrandsView extends StatelessWidget {
   const PhoneBrandsView({super.key});
@@ -44,11 +45,30 @@ class PhoneBrandsView extends StatelessWidget {
                       foregroundColor: Colors.black,
                       elevation: 2,
                     ),
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Selected: ${brand['name']}')),
+                    onPressed: () async {
+                      // Open DeviceProblemView without the 'Keyboard Key Missing' option
+                      final customProblems = [
+                        'Cannot Charge',
+                        'Cannot Power On',
+                        'Battery Drain Fast',
+                        'Auto Shutdown',
+                        'Cannot Connect Wifi',
+                        'Screen Flickering',
+                      ];
+
+                      final result = await Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => DeviceProblemView(problems: customProblems),
+                        ),
                       );
-                      Navigator.of(context).pop(brand['name']);
+
+                      if (result != null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Brand: ${brand['name']}, Problems: $result')),
+                        );
+                        // Return the brand name to the caller (keeps previous behavior)
+                        Navigator.of(context).pop(brand['name']);
+                      }
                     },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,

@@ -196,7 +196,7 @@ class DeviceTypeView extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () async {
                       final result = await Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => const PhoneBrandsView()),
+                        MaterialPageRoute(builder: (_) => const TabletBrandsView()),
                       );
                       if (result != null) {
                         ScaffoldMessenger.of(context).showSnackBar(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../problems.dart';
 
 class LaptopBrandsView extends StatelessWidget {
   const LaptopBrandsView({super.key});
@@ -44,11 +45,21 @@ class LaptopBrandsView extends StatelessWidget {
                       foregroundColor: Colors.black,
                       elevation: 2,
                     ),
-                    onPressed: () {
+                    /* onPressed: () {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text('Selected: ${brand['name']}')),
                       );
                       Navigator.of(context).pop(brand['name']);
+                    }, */
+                    onPressed: () async {
+                      final result = await Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const DeviceProblemView()),
+                      );
+                      if (result != null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Selected: $result')),
+                        );
+                      }
                     },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,

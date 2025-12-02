@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'brands/laptop_brands.dart';
+import 'brands/phone_brands.dart';
+import 'brands/tablet_brands.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'DeviceClinic',
       theme: ThemeData(
         // This is the theme of your application.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white24),
       ),
       home: const MyHomePage(title: 'deviceclinic'),
     );
@@ -60,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // TRY THIS: Try changing the color here to a specific color (to
         // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
         // change color while the other colors stay the same.
-        backgroundColor: Colors.white24,
+        
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
@@ -78,10 +81,6 @@ class _MyHomePageState extends State<MyHomePage> {
           // start the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
           mainAxisAlignment: .start,
           children: [
             const Padding(
@@ -100,8 +99,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 12.0),
                 ),
                 onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Create new repair tapped')),
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const DeviceTypeView()),
                   );
                 },
                 child: Row(
@@ -131,7 +130,86 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
 
-            
+        ),
+      ),
+    );
+  }
+}
+
+class DeviceTypeView extends StatelessWidget {
+  const DeviceTypeView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white24,
+        title: const Text('deviceclinic'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Text(
+              'What is your device type?',
+              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),
+            ),  
+            const SizedBox(height: 24.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      final result = await Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const LaptopBrandsView()),
+                      );
+                      if (result != null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Selected: $result')),
+                        );
+                      }
+                    },
+                    child: const Text('Laptop'),
+                  ),
+                ),
+                const SizedBox(width: 12.0),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      final result = await Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const PhoneBrandsView()),
+                      );
+                      if (result != null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Selected: $result')),
+                        );
+                      }
+                    },
+                    child: const Text('Phone'),
+                  ),
+                ),
+                const SizedBox(width: 12.0),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      final result = await Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const TabletBrandsView()),
+                      );
+                      if (result != null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Selected: $result')),
+                        );
+                      }
+                    },
+                    child: const Text('Tablet'),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
